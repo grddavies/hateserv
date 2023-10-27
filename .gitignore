@@ -1,0 +1,5 @@
+# Project-specific
+word.db
+
+# Cabal
+dist-newstyle/
