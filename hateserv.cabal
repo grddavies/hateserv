@@ -39,6 +39,7 @@ executable hateserv
         http-client,
         text,
         wai ^>=3.2.3,
+        wai-logger ^>=2.4.0,
         warp ^>=3.3.30,
         sqlite-simple ^>=0.4.18.2,
     hs-source-dirs:   app

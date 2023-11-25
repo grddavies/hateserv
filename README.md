@@ -8,7 +8,6 @@ To build and run you'll need [Haskell](https://www.haskell.org/ghcup/) and [`cab
 
 ```
 cabal run
-#> Server running on port 8081
 ```
 
 ### Test Endpoints

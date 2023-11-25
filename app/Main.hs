@@ -13,6 +13,7 @@ import Database.SQLite.Simple
 import GHC.Generics
 import Network.HTTP.Client (defaultManagerSettings, newManager)
 import Network.Wai.Handler.Warp
+import Network.Wai.Logger (withStdoutLogger)
 import Servant
 import Servant.Client
 
@@ -123,8 +124,9 @@ server dbfile = getAll :<|> getRandom :<|> postWord :<|> delWord
 
 runApp :: FilePath -> IO ()
 runApp dbfile = do
-  putStrLn $ "Server running on port " ++ show port
-  run port (serve api $ server dbfile)
+  withStdoutLogger $ \aplogger -> do
+    let settings = setPort port $ setLogger aplogger defaultSettings
+    runSettings settings (serve api $ server dbfile)
 
 postWord :: WordType -> Message -> ClientM NoContent
 delWord :: WordType -> String -> ClientM NoContent
